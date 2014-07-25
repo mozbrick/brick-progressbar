@@ -1,4 +1,6 @@
-x-progress-bar
-==============
+brick-progressbar
+=================
 
-Xtag based progressbar, inspired by bootstrap
+Currently Work in progress
+--
+Aiming for creating custom Web Component for Progess bar. inspired by MozBrick and BootStrap !
