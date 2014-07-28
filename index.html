@@ -17,17 +17,21 @@
     <h2>Use HTML to define Progressbar</h2>
 
     <pre lang="js">
-        &lt;brick-progressbar value="10">&lt;/brick-progressbar>
+    &lt;brick-progressbar value="60">&lt;/brick-progressbar>
     </pre>
-    <brick-progressbar value="10"></brick-progressbar>
+    <brick-progressbar value="60"></brick-progressbar>
+
+    <h2>Striped</h2>
 
     <pre lang="js">
-        &lt;brick-progressbar value="15" striped>&lt;/brick-progressbar>
+    &lt;brick-progressbar value="15" <b>striped</b>>&lt;/brick-progressbar>
     </pre>
     <brick-progressbar value="15" striped></brick-progressbar>
 
+    <h2>Striped and Active</h2>
+
     <pre lang="js">
-        &lt;brick-progressbar value="20" striped active>&lt;/brick-progressbar>
+    &lt;brick-progressbar value="20" <b>striped active</b>>&lt;/brick-progressbar>
     </pre>
     <brick-progressbar value="20" striped active></brick-progressbar>
 
@@ -35,12 +39,47 @@
     <h2>Set Progress from JavaScript</h2>
 
     <pre lang="js">
-        &lt;brick-progressbar <b>id="p1"</b> value="20" striped active>&lt;/brick-progressbar>
-        &lt;button <b>onclick="document.getElementById('p1').value=40;"</b>>Click to Set 40%&lt;/button>
+    &lt;brick-progressbar <b>id="p1"</b> value="20" striped active>&lt;/brick-progressbar>
+    &lt;button <b>onclick="document.getElementById('p1').value=40;"</b>>Click to Set 40%&lt;/button>
     </pre>
 
     <brick-progressbar id="p1" value="20" striped active></brick-progressbar>
     <button onclick="document.getElementById('p1').value=40;"><b>Click to Set 40%</b></button>
+
+    <h2>Min/Max</h2>
+
+
+    <pre lang="js">
+    &lt;brick-progressbar <b>min="100" max="900" id="p2"</b> value="300" striped active>&lt;/brick-progressbar>
+    &lt;button <b>onclick="document.getElementById('p2').value=800;"</b>>Click to Set 800&lt;/button>
+    </pre>
+
+    <brick-progressbar min="100" max="900" id="p2" value="300" striped active></brick-progressbar>
+    <button onclick="document.getElementById('p2').value=800;"><b>Click to Set 800</b></button>
+
+
+    <h2>Min/Max with Showing Actual Values</h2>
+
+
+    <pre lang="js">
+    &lt;brick-progressbar <b>min="100" max="900" showPercentage="false"</b> id="p3" value="300" striped active>&lt;/brick-progressbar>
+    &lt;button <b>onclick="document.getElementById('p3').value=800;"</b>>Click to Set 800&lt;/button>
+    </pre>
+
+    <brick-progressbar min="100" max="900" showPercentage="false" id="p3" value="300" striped active></brick-progressbar>
+    <button onclick="document.getElementById('p3').value=800;"><b>Click to Set 800</b></button>
+
+
+    <h2>Toggle between Percentage and Actual Values</h2>
+
+
+    <pre lang="js">
+    &lt;brick-progressbar <b>min="100" max="900" showPercentage="false"</b> id="p4" value="300" striped active>&lt;/brick-progressbar>
+    &lt;button <b>onclick="document.getElementById('p4').showPercentage=!document.getElementById('p4').showPercentage;"</b>>Toggle&lt;/button>
+    </pre>
+
+    <brick-progressbar min="100" max="900" showPercentage="false" id="p4" value="300" striped active></brick-progressbar>
+    <button onclick="document.getElementById('p4').showPercentage=!document.getElementById('p4').showPercentage;"><b>Toggle</b></button>
 
   </body>
 </html>

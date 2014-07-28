@@ -1,5 +1,10 @@
 (function () {
 
+  var boolStringToBoolean = {
+    "true": true,
+    "false": false
+  }
+
   var BrickProgressbarElementPrototype = Object.create(HTMLElement.prototype);
 
   // Lifecycle methods
@@ -16,9 +21,31 @@
       '</div>',
     '</div>'].join("");
 
+    this.options = {};
+
+
+    if(this.getAttribute("min") !== null){
+      this.options.min = parseInt(this.getAttribute("min"), 10);
+    }else{
+      this.options.min = 0;
+    }
+
+    if(this.getAttribute("max") !== null){
+      this.options.max = parseInt(this.getAttribute("max"), 10);
+    }else{
+      this.options.max = 100;
+    }
+
+    if(this.getAttribute("showPercentage") !== null){
+      this.options.showPercentage = boolStringToBoolean[this.getAttribute("showPercentage")];
+    }else{
+      this.options.showPercentage = true;
+    }
+
     if(this.active !== null){
      this.active = true;
     }
+
     if(this.striped !== null){
       this.striped = true;
     }
@@ -26,7 +53,7 @@
     if(this.value !== null){
       this.value = parseInt(this.value, 10);
     }else{
-      this.value = 0;
+      this.value = this.options.min;
     }
   };
 
@@ -56,6 +83,24 @@
 
   // Property handlers
 
+  BrickProgressbarElementPrototype.setProgressStatus = function () {
+    var newVal = parseInt(this.getAttribute('value'), 10);
+    var p = ((newVal - this.options.min)/(this.options.max -this.options.min) * 100);
+    if(p>100){
+      p = 100;
+    }
+    if(p<0){
+      p = 0;
+    }
+    this.querySelector(".progress-bar").style.width = p + "%";
+    if(this.options.showPercentage){
+      this.querySelector(".status").innerHTML = p + "%";
+    }else{
+      this.querySelector(".status").innerHTML = newVal;
+    }
+
+  };
+
   Object.defineProperties(BrickProgressbarElementPrototype, {
     'value': {
       get : function () {
@@ -66,8 +111,7 @@
         // update the attribute if needed.
         if (this.getAttribute('value') !== newVal) {
           this.setAttribute('value', newVal);
-          this.querySelector(".progress-bar").style.width = newVal + "%";
-          this.querySelector(".status").innerHTML = newVal + "%";
+          this.setProgressStatus();
         }
       }
     },
@@ -102,6 +146,36 @@
           }else{
             this.querySelector(".progress-bar").classList.remove("progress-bar-striped");
           }
+        }
+      }
+    },
+    'min': {
+      get : function () {
+        return this.options.min;
+      },
+      set : function (newVal) {
+        this.options.min = newVal;
+      }
+    },
+    'max': {
+      get : function () {
+        return this.options.max;
+      },
+      set : function (newVal) {
+        this.options.max = newVal;
+      }
+    },
+    'showPercentage': {
+      get : function () {
+        return this.options.showPercentage;
+      },
+      set : function (newVal) {
+        if(typeof newVal === "boolean" ){
+          this.options.showPercentage = newVal;
+          //Display value using new flag !
+          this.setProgressStatus();
+        }else{
+          console.error("Trying to set non-boolean value to showPercentage")
         }
       }
     }
