@@ -1,13 +1,12 @@
 {
   "name": "brick-boilerplate",
-  "version": "0.0.0",
-  "homepage": "https://github.com/mozilla/brick-boilerplate",
+  "version": "0.0.1",
+  "homepage": "https://github.com/nssodiya/brick-progressbar",
   "authors": [
-    "Matt Claypotch <thepotch@gmail.com>",
-    "Christian Weiss <christian.x.weiss@gmail.com>"
+    "Narendra Sisodiya <narendra@narendrasisodiya.com>"
   ],
-  "description": "Empty Brick Component Project",
-  "main": "src/element.html",
+  "description": "Brick Progressbar",
+  "main": "src/brick-progressbar.html",
   "keywords": [
     "brick",
     "webcomponents"
