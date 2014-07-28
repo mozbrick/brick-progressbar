@@ -14,7 +14,33 @@
   <body>
 
     <!-- Using Custom Element -->
-    <brick-progressbar></brick-progressbar>
+    <h2>Use HTML to define Progressbar</h2>
+
+    <pre lang="js">
+        &lt;brick-progressbar value="10">&lt;/brick-progressbar>
+    </pre>
+    <brick-progressbar value="10"></brick-progressbar>
+
+    <pre lang="js">
+        &lt;brick-progressbar value="15" striped>&lt;/brick-progressbar>
+    </pre>
+    <brick-progressbar value="15" striped></brick-progressbar>
+
+    <pre lang="js">
+        &lt;brick-progressbar value="20" striped active>&lt;/brick-progressbar>
+    </pre>
+    <brick-progressbar value="20" striped active></brick-progressbar>
+
+
+    <h2>Set Progress from JavaScript</h2>
+
+    <pre lang="js">
+        &lt;brick-progressbar <b>id="p1"</b> value="20" striped active>&lt;/brick-progressbar>
+        &lt;button <b>onclick="document.getElementById('p1').value=40;"</b>>Click to Set 40%&lt;/button>
+    </pre>
+
+    <brick-progressbar id="p1" value="20" striped active></brick-progressbar>
+    <button onclick="document.getElementById('p1').value=40;"><b>Click to Set 40%</b></button>
 
   </body>
 </html>

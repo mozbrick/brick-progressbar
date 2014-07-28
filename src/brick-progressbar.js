@@ -9,11 +9,25 @@
   };
 
   BrickProgressbarElementPrototype.attachedCallback = function () {
-    this.innerHTML = '<div class="progress">\
-    <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 0%">\
-      <span class="status">0%</span>\
-      </div>\
-    </div>';
+    this.innerHTML = [
+    '<div class="progress">',
+      '<div class="progress-bar" role="progressbar">',
+        '<span class="status"></span>',
+      '</div>',
+    '</div>'].join("");
+
+    if(this.active !== null){
+     this.active = true;
+    }
+    if(this.striped !== null){
+      this.striped = true;
+    }
+
+    if(this.value !== null){
+      this.value = parseInt(this.value, 10);
+    }else{
+      this.value = 0;
+    }
   };
 
   BrickProgressbarElementPrototype.detachedCallback = function () {
@@ -36,7 +50,7 @@
 
   var attrs = {
     'value': function (oldVal, newVal) {
-      //ToDO what is this ??
+      this.setAttribute('value', newVal);
     }
   };
 
@@ -70,6 +84,23 @@
             this.querySelector(".progress-bar").classList.add("active");
           }else{
             this.querySelector(".progress-bar").classList.remove("active");
+          }
+
+        }
+      }
+    },
+    'striped': {
+      get : function () {
+        return this.getAttribute('striped');
+      },
+      set : function (newVal) {
+        // update the attribute if needed.
+        if (this.getAttribute('striped') !== newVal) {
+          this.setAttribute('striped', newVal);
+          if(newVal === true){
+            this.querySelector(".progress-bar").classList.add("progress-bar-striped");
+          }else{
+            this.querySelector(".progress-bar").classList.remove("progress-bar-striped");
           }
         }
       }
