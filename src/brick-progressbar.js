@@ -5,124 +5,119 @@
     "true": true,
     "false": false
   };
+  var mix = function(obj, proto){
+    for(var prop in proto){
+      if(proto.hasOwnProperty(prop)){
+        obj[prop] = proto[prop];
+      }
+    }
+  };
 
   var BrickProgressbarElementPrototype = Object.create(HTMLElement.prototype);
 
-  // Lifecycle methods
+  mix(BrickProgressbarElementPrototype, {
+    // Lifecycle methods
+    createdCallback: function () {
 
-  BrickProgressbarElementPrototype.createdCallback = function () {
+    },
+    attachedCallback: function () {
+      var importDoc = currentScript.ownerDocument;
+      var template = importDoc.querySelector('#brick-progressbar-template');
 
-  };
+      var shadowRoot = this.createShadowRoot();
+      shadowRoot.appendChild(template.content.cloneNode(true));
 
-  BrickProgressbarElementPrototype.attachedCallback = function () {
-
-    var importDoc = currentScript.ownerDocument;
-    var template = importDoc.querySelector('#brick-progressbar-template');
-
-    var shadowRoot = this.createShadowRoot();
-    shadowRoot.appendChild(template.content.cloneNode(true));
-
-    this.options = {};
+      this.options = {};
 
 
-    if(this.getAttribute("min") !== null){
-      this.options.min = parseInt(this.getAttribute("min"), 10);
-    }else{
-      this.options.min = 0;
+      if(this.getAttribute("min") !== null){
+        this.options.min = parseInt(this.getAttribute("min"), 10);
+      }else{
+        this.options.min = 0;
+      }
+
+      if(this.getAttribute("max") !== null){
+        this.options.max = parseInt(this.getAttribute("max"), 10);
+      }else{
+        this.options.max = 100;
+      }
+
+      if(this.getAttribute("type") !== null){
+        this.setProgressType(this.getAttribute("type"));
+      }else{
+        this.options.type = "default";
+      }
+
+      if(this.getAttribute("showPercentage") !== null){
+        this.options.showPercentage = boolStringToBoolean[this.getAttribute("showPercentage")];
+      }else{
+        this.options.showPercentage = true;
+      }
+
+      if(this.active !== null){
+        this.active = true;
+      }
+
+      if(this.striped !== null){
+        this.striped = true;
+      }
+
+      if(this.value !== null){
+        this.value = parseInt(this.value, 10);
+      }else{
+        this.value = this.options.min;
+      }
+    },
+    detachedCallback: function () {
+
+    },
+    attributeChangedCallback: function (attr, oldVal, newVal) {
+      if (attr in attrs) {
+        attrs[attr].call(this, oldVal, newVal);
+      }
+    },
+
+    setProgressStatus: function () {
+      var newVal = parseInt(this.getAttribute('value'), 10);
+      var p = ((newVal - this.options.min)/(this.options.max -this.options.min) * 100);
+      if(p>100){
+        p = 100;
+      }
+      if(p<0){
+        p = 0;
+      }
+      this.shadowRoot.querySelector(".progress-bar").style.width = p + "%";
+      if(this.options.showPercentage){
+        this.shadowRoot.querySelector(".status").innerHTML = p + "%";
+      }else{
+        this.shadowRoot.querySelector(".status").innerHTML = newVal;
+      }
+    },
+    setProgressType: function (newVal) {
+      if(this.options.type === newVal){
+        return;
+      }
+      if(newVal === "success" || newVal === "info" || newVal === "warning" || newVal === "danger" || newVal === "default"){
+        var node = this.shadowRoot.querySelector(".progress-bar");
+        if(this.options.type === "success" || this.options.type === "info" || this.options.type === "warning" || this.options.type === "danger"){
+          node.classList.remove("progress-bar-" + this.options.type);
+        }
+        this.options.type = newVal;
+        if(newVal !== "default"){
+          node.classList.add("progress-bar-" + this.options.type);
+        }
+      }else{
+        console.error("Trying to set invalid value to type");
+      }
     }
+  });
 
-    if(this.getAttribute("max") !== null){
-      this.options.max = parseInt(this.getAttribute("max"), 10);
-    }else{
-      this.options.max = 100;
-    }
-
-    if(this.getAttribute("type") !== null){
-      this.setProgressType(this.getAttribute("type"));
-    }else{
-      this.options.type = "default";
-    }
-
-    if(this.getAttribute("showPercentage") !== null){
-      this.options.showPercentage = boolStringToBoolean[this.getAttribute("showPercentage")];
-    }else{
-      this.options.showPercentage = true;
-    }
-
-    if(this.active !== null){
-     this.active = true;
-    }
-
-    if(this.striped !== null){
-      this.striped = true;
-    }
-
-    if(this.value !== null){
-      this.value = parseInt(this.value, 10);
-    }else{
-      this.value = this.options.min;
-    }
-  };
-
-  BrickProgressbarElementPrototype.detachedCallback = function () {
-
-  };
-
-  BrickProgressbarElementPrototype.attributeChangedCallback = function (attr, oldVal, newVal) {
-    if (attr in attrs) {
-      attrs[attr].call(this, oldVal, newVal);
-    }
-  };
-
-  // Custom methods
-
-  BrickProgressbarElementPrototype.foo = function () {
-
-  };
 
   // Attribute handlers
 
   var attrs = {
     'value': function (oldVal, newVal) {
       this.setAttribute('value', newVal);
-    }
-  };
-
-  // Property handlers
-
-  BrickProgressbarElementPrototype.setProgressStatus = function () {
-    var newVal = parseInt(this.getAttribute('value'), 10);
-    var p = ((newVal - this.options.min)/(this.options.max -this.options.min) * 100);
-    if(p>100){
-      p = 100;
-    }
-    if(p<0){
-      p = 0;
-    }
-    this.shadowRoot.querySelector(".progress-bar").style.width = p + "%";
-    if(this.options.showPercentage){
-      this.shadowRoot.querySelector(".status").innerHTML = p + "%";
-    }else{
-      this.shadowRoot.querySelector(".status").innerHTML = newVal;
-    }
-
-  };
-
-  BrickProgressbarElementPrototype.setProgressType = function (newVal) {
-    if(this.options.type === newVal){
-      return;
-    }
-    if(newVal === "success" || newVal === "info" || newVal === "warning" || newVal === "danger" || newVal === "default"){
-      var node = this.shadowRoot.querySelector(".progress-bar");
-      if(this.options.type === "success" || this.options.type === "info" || this.options.type === "warning" || this.options.type === "danger"){
-        node.classList.remove("progress-bar-" + this.options.type);
-      }
-      this.options.type = newVal;
-      if(newVal !== "default"){
-        node.classList.add("progress-bar-" + this.options.type);
-      }
-    }else{
-      console.error("Trying to set invalid value to type");
     }
   };
 
