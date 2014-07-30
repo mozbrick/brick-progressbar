@@ -49,6 +49,7 @@ Attribute        | Options    | Default     | Description
 `active`         | *boolean*  | `true`      | Show animation on striped. Not available in IE8.
 `showStatus`     | *boolean*  | `false`     | Show Status like 32% or 350/500
 `showPercentage` | *boolean*  | `true`      | Show Status in Percentage 32% if true, else show status in text like 350/500
+`type`           | *string*   | `default`   | possible values are success/info/danger/warning/default
 
 
 ## Methods

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
-    <title>Custom Element Demo</title>
+    <title>Brick-Progressbar Demo</title>
 
     <!-- Importing Polyfill -->
     <script src="bower_components/platform/platform.js"></script>
@@ -34,6 +34,39 @@
     &lt;brick-progressbar value="20" <b>striped active</b>>&lt;/brick-progressbar>
     </pre>
     <brick-progressbar value="20" striped active></brick-progressbar>
+
+
+    <h2>Types of Progressbar</h2>
+
+    <pre lang="js">
+        &lt;brick-progressbar value="20" striped active <b>type="success"</b>>&lt;/brick-progressbar>
+        &lt;brick-progressbar value="20" striped active <b>type="info"</b>>&lt;/brick-progressbar>
+        &lt;brick-progressbar value="20" striped active <b>type="danger"</b>>&lt;/brick-progressbar>
+        &lt;brick-progressbar value="20" striped active <b>type="warning"</b>>&lt;/brick-progressbar>
+    </pre>
+    <brick-progressbar value="20" striped active type="success"></brick-progressbar>
+    <brick-progressbar value="20" striped active type="info"></brick-progressbar>
+    <brick-progressbar value="20" striped active type="danger"></brick-progressbar>
+    <brick-progressbar value="20" striped active type="warning"></brick-progressbar>
+
+    <h2>Change Type from Progressbar</h2>
+
+    <pre lang="js">
+        &lt;brick-progressbar value="20" striped active <b>id="p0" type="danger"</b>>&lt;/brick-progressbar>
+        &lt;button <b>onclick="document.getElementById('p0').type='default';"</b>>Default&lt;/button>
+        &lt;button <b>onclick="document.getElementById('p0').type='success';"</b>>Success&lt;/button>
+        &lt;button <b>onclick="document.getElementById('p0').type='warning';"</b>>Warning&lt;/button>
+        &lt;button <b>onclick="document.getElementById('p0').type='info';"</b>>Info&lt;/button>
+        &lt;button <b>onclick="document.getElementById('p0').type='danger';"</b>>Danger&lt;/button>
+
+
+    </pre>
+    <brick-progressbar value="20" striped active id="p0" type="danger"></brick-progressbar>
+    <button onclick="document.getElementById('p0').type='default';">Default</button>
+    <button onclick="document.getElementById('p0').type='success';">Success</button>
+    <button onclick="document.getElementById('p0').type='warning';">Warning</button>
+    <button onclick="document.getElementById('p0').type='info';">Info</button>
+    <button onclick="document.getElementById('p0').type='danger';">Danger</button>
 
 
     <h2>Set Progress from JavaScript</h2>

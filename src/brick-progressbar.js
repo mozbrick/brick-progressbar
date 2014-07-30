@@ -3,7 +3,7 @@
   var boolStringToBoolean = {
     "true": true,
     "false": false
-  }
+  };
 
   var BrickProgressbarElementPrototype = Object.create(HTMLElement.prototype);
 
@@ -34,6 +34,12 @@
       this.options.max = parseInt(this.getAttribute("max"), 10);
     }else{
       this.options.max = 100;
+    }
+
+    if(this.getAttribute("type") !== null){
+      this.setProgressType(this.getAttribute("type"));
+    }else{
+      this.options.type = "default";
     }
 
     if(this.getAttribute("showPercentage") !== null){
@@ -99,6 +105,24 @@
       this.querySelector(".status").innerHTML = newVal;
     }
 
+  };
+
+  BrickProgressbarElementPrototype.setProgressType = function (newVal) {
+    if(this.options.type === newVal){
+      return;
+    }
+    if(newVal === "success" || newVal === "info" || newVal === "warning" || newVal === "danger" || newVal === "default"){
+      var node = this.querySelector(".progress-bar");
+      if(this.options.type === "success" || this.options.type === "info" || this.options.type === "warning" || this.options.type === "danger"){
+        node.classList.remove("progress-bar-" + this.options.type);
+      }
+      this.options.type = newVal;
+      if(newVal !== "default"){
+        node.classList.add("progress-bar-" + this.options.type);
+      }
+    }else{
+      console.error("Trying to set invalid value to type");
+    }
   };
 
   Object.defineProperties(BrickProgressbarElementPrototype, {
@@ -175,8 +199,16 @@
           //Display value using new flag !
           this.setProgressStatus();
         }else{
-          console.error("Trying to set non-boolean value to showPercentage")
+          console.error("Trying to set non-boolean value to showPercentage");
         }
+      }
+    },
+    'type': {
+      get : function () {
+        return this.options.type;
+      },
+      set : function (newVal) {
+        this.setProgressType(newVal);
       }
     }
   });
