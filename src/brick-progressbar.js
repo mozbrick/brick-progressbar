@@ -1,4 +1,5 @@
 (function () {
+  var currentScript = document._currentScript || document.currentScript;
 
   var boolStringToBoolean = {
     "true": true,
@@ -14,12 +15,12 @@
   };
 
   BrickProgressbarElementPrototype.attachedCallback = function () {
-    this.innerHTML = [
-    '<div class="progress">',
-      '<div class="progress-bar" role="progressbar">',
-        '<span class="status"></span>',
-      '</div>',
-    '</div>'].join("");
+
+    var importDoc = currentScript.ownerDocument;
+    var template = importDoc.querySelector('#brick-progressbar-template');
+
+    var shadowRoot = this.createShadowRoot();
+    shadowRoot.appendChild(template.content.cloneNode(true));
 
     this.options = {};
 
@@ -98,11 +99,11 @@
     if(p<0){
       p = 0;
     }
-    this.querySelector(".progress-bar").style.width = p + "%";
+    this.shadowRoot.querySelector(".progress-bar").style.width = p + "%";
     if(this.options.showPercentage){
-      this.querySelector(".status").innerHTML = p + "%";
+      this.shadowRoot.querySelector(".status").innerHTML = p + "%";
     }else{
-      this.querySelector(".status").innerHTML = newVal;
+      this.shadowRoot.querySelector(".status").innerHTML = newVal;
     }
 
   };
@@ -112,7 +113,7 @@
       return;
     }
     if(newVal === "success" || newVal === "info" || newVal === "warning" || newVal === "danger" || newVal === "default"){
-      var node = this.querySelector(".progress-bar");
+      var node = this.shadowRoot.querySelector(".progress-bar");
       if(this.options.type === "success" || this.options.type === "info" || this.options.type === "warning" || this.options.type === "danger"){
         node.classList.remove("progress-bar-" + this.options.type);
       }
@@ -149,9 +150,9 @@
         if (this.getAttribute('active') !== newVal) {
           this.setAttribute('active', newVal);
           if(newVal === true){
-            this.querySelector(".progress-bar").classList.add("active");
+            this.shadowRoot.querySelector(".progress-bar").classList.add("active");
           }else{
-            this.querySelector(".progress-bar").classList.remove("active");
+            this.shadowRoot.querySelector(".progress-bar").classList.remove("active");
           }
 
         }
@@ -166,9 +167,9 @@
         if (this.getAttribute('striped') !== newVal) {
           this.setAttribute('striped', newVal);
           if(newVal === true){
-            this.querySelector(".progress-bar").classList.add("progress-bar-striped");
+            this.shadowRoot.querySelector(".progress-bar").classList.add("progress-bar-striped");
           }else{
-            this.querySelector(".progress-bar").classList.remove("progress-bar-striped");
+            this.shadowRoot.querySelector(".progress-bar").classList.remove("progress-bar-striped");
           }
         }
       }
