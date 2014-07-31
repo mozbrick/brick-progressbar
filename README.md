@@ -32,33 +32,40 @@ Aiming for creating custom Web Component for Progress bar. inspired by MozBrick 
 3. Start using it:
 
     ```html
-    <brick-progressbar min="200" max="500" value="340" showStatus="true" showPercentage="false">
+    <brick-progressbar min="200" max="500" value="340" showStatus striped active>
     </brick-progressbar>
     ```
 
 ## Options
 
-Attribute        | Options    | Default     | Description
----              | ---        | ---         | ---
-`min`            | *string*   | `0`         | Minimum value of Progressbar.
-`max`            | *string*   | `100`       | Maximum value of Progressbar.
-`value`          | *string*   | `0`         | Get/Set Value of Progressbar.
-`barColor`       | *string*   | `blue`      | Progressbar color
-`backgroundColor`| *string*   | `grey`      | Progressbar background color
-`striped`        | *boolean*  | `true`      | Uses a gradient to create a striped effect. Not available in IE8.
-`active`         | *boolean*  | `true`      | Show animation on striped. Not available in IE8.
-`showStatus`     | *boolean*  | `false`     | Show Status like 32% or 350/500
-`showPercentage` | *boolean*  | `true`      | Show Status in Percentage 32% if true, else show status in text like 350/500
-`type`           | *string*   | `default`   | possible values are success/info/danger/warning/default
+Attribute         | Options    | Default     | Description
+---               | ---        | ---         | ---
+`min`             | *string*   | `0`         | Minimum value of Progressbar.
+`max`             | *string*   | `100`       | Maximum value of Progressbar.
+`value`           | *string*   | `0`         | Get/Set Value of Progressbar.
+`type`            | *string*   | `default`   | possible values are success/info/danger/warning
+`striped`         | *boolean*  | `false`     | Uses a gradient to create a striped effect. Not available in IE8.
+`active`          | *boolean*  | `false`     | Show animation on striped. Not available in IE8.
+`showStatus`      | *boolean*  | `false`     | Show Status like 32% or 350/500
+`showactualvalue` | *boolean*  | `false`     | Show Status in Percentage 32% if present, else show status in text like 350/500
 
+TODO
+Attribute         | Options    | Default     | Description
+---               | ---        | ---         | ---
+`barColor`        | *string*   | `blue`      | Progressbar color
+`backgroundColor` | *string*   | `grey`      | Progressbar background color
 
 ## Methods
 
+TODO 
+
 Method       | Parameters   | Returns     | Description
 ---          | ---          | ---         | ---
-`toggle()`   | None.        | Nothing.    | Toggle the Progressbar.
+`toggle()`   | None.        | Nothing.    | Toggle any boolean attr
 
 ## Events
+
+TODO 
 
 Event         | Description
 ---           | ---

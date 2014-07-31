@@ -46,7 +46,7 @@ gulp.task('clean', ['vulcanize'], function() {
     .pipe(rm());
 });
 
-gulp.task('vulcanize', ['styles','themes'], function() {
+gulp.task('vulcanize', ['styles'], function() {
   return gulp.src('src/brick-progressbar.html')
     .pipe(vulcanize({
       excludes: {
@@ -72,7 +72,7 @@ gulp.task('connect', function() {
 
 
 gulp.task('watch', function () {
-  gulp.watch(paths.scripts, ['lint']);
+  gulp.watch(paths.scripts, ['lint', 'vulcanize']);
   gulp.watch(paths.stylesheets, ['build']);
   gulp.watch(paths.themes, ['build']);
 });

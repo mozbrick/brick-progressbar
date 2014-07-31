@@ -53,9 +53,9 @@
       return val;
     },
     toggle: function (attr) {
-      //if(["active", "striped", "showStatus", "showactualvalue"].indexOf("attr") !== -1){
-      // this[attr] = !this[attr];
-      //}
+      if(["active", "striped", "showStatus", "showactualvalue"].indexOf("attr") !== -1){
+       this[attr] = !this[attr];
+      }
     },
     setBooleanAttribute: function (attr, newVal) {
       if (this[attr] !== newVal && typeof newVal === "boolean") {
