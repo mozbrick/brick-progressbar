@@ -1,11 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Brick Component</title>
-  <link rel="stylesheet" href="brick-progressbar.css">
-</head>
-<body>
-  <script src="brick-progressbar.js"></script>
-</body>
-</html>
+<template id="brick-progressbar-template">
+    <link rel="stylesheet" href="brick-progressbar.css">
+    <div class="progress">
+        <div class="progress-bar" role="progressbar">
+            <span class="status">
+                <span class="percentage"></span>
+                <span class="value"></span>
+            </span>
+        </div>
+    </div>
+</template>
+
+<script src="brick-progressbar.js"></script>
