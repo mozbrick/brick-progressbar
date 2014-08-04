@@ -65,9 +65,9 @@
       return val;
     },
     toggle: function (attr) {
-      //if(["active", "striped", "showStatus", "showactualvalue"].indexOf("attr") !== -1){
-      // this[attr] = !this[attr];
-      //}
+      if(["active", "striped", "showStatus", "showActualValue"].indexOf("attr") !== -1){
+        this.setBooleanAttribute(attr, !this.setBooleanAttribute(attr));
+      }
     },
     setBooleanAttribute: function (attr, newVal) {
       if (this[attr] !== newVal && typeof newVal === "boolean") {
@@ -183,12 +183,12 @@
         this.setBooleanAttribute("striped", newVal);
       }
     },
-    'showactualvalue': {
+    'showActualValue': {
       get : function () {
-        return this.getBooleanAttribute("showactualvalue");
+        return this.getBooleanAttribute("showActualValue");
       },
       set : function (newVal) {
-        this.setBooleanAttribute("showactualvalue", newVal);
+        this.setBooleanAttribute("showActualValue", newVal);
       }
     },
     'showStatus': {
