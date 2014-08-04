@@ -27,20 +27,32 @@
   mix(BrickProgressbarElementPrototype, {
     // Lifecycle methods
     createdCallback: function () {
-
-    },
-    attachedCallback: function () {
       var importDoc = currentScript.ownerDocument;
       var template = importDoc.querySelector('#brick-progressbar-template');
+
+      // fix styling for polyfill
+      if (Platform.ShadowCSS) {
+        var styles = template.content.querySelectorAll('style');
+        for (var i = 0; i < styles.length; i++) {
+          var style = styles[i];
+          var cssText = Platform.ShadowCSS.shimStyle(style, ' ');
+          Platform.ShadowCSS.addCssToDocument(cssText);
+          style.remove();
+        }
+      }
 
       var shadowRoot = this.createShadowRoot();
       shadowRoot.appendChild(template.content.cloneNode(true));
       this.render();
     },
+    attachedCallback: function () {
+
+    },
     detachedCallback: function () {
 
     },
     attributeChangedCallback: function (attr, oldVal, newVal) {
+      console.log(arguments);
 //      if (attr in attrs) {
 //        attrs[attr].call(this, oldVal, newVal);
 //      }

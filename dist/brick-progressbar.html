@@ -1,5 +1,37 @@
 <template id="brick-progressbar-template">
-    <style>@-webkit-keyframes progress-bar-stripes {
+    <style>:host(brick-progressbar[type="success"])::shadow .progress-bar {
+  background-color: #5cb85c;
+}
+:host(brick-progressbar[type="info"])::shadow .progress-bar {
+  background-color: #5bc0de;
+}
+:host(brick-progressbar[type="danger"])::shadow .progress-bar {
+  background-color: #d9534f;
+}
+:host(brick-progressbar[type="warning"])::shadow .progress-bar {
+  background-color: #f0ad4e;
+}
+:host(brick-progressbar[striped])::shadow .progress-bar {
+  background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.25, rgba(255,255,255,0.15)), color-stop(0.25, transparent), color-stop(0.5, transparent), color-stop(0.5, rgba(255,255,255,0.15)), color-stop(0.75, rgba(255,255,255,0.15)), color-stop(0.75, transparent), to(transparent));
+  background-image: -webkit-linear-gradient(45deg, rgba(255,255,255,0.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(45deg, rgba(255,255,255,0.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(45deg, rgba(255,255,255,0.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+:host(brick-progressbar[active])::shadow .progress-bar {
+  -webkit-animation: progress-bar-stripes 2s linear infinite;
+  animation: progress-bar-stripes 2s linear infinite;
+}
+:host(brick-progressbar[showStatus])::shadow span.status {
+  display: block;
+}
+:host(brick-progressbar[showactualvalue])::shadow span.status .percentage {
+  display: none;
+}
+:host(brick-progressbar[showactualvalue])::shadow span.status .value {
+  display: block;
+}
+@-webkit-keyframes progress-bar-stripes {
   from {
     background-position: 40px 0;
   }
@@ -23,7 +55,7 @@
     background-position: 40px 0;
   }
 }
-brick-progressbar .progress {
+:host::shadow .progress {
   height: 20px;
   margin-bottom: 20px;
   overflow: hidden;
@@ -32,7 +64,7 @@ brick-progressbar .progress {
   -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
   box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
 }
-brick-progressbar .progress-bar {
+:host::shadow .progress-bar {
   float: left;
   width: 0;
   height: 100%;
@@ -46,46 +78,14 @@ brick-progressbar .progress-bar {
   -webkit-transition: width 0.6s ease;
   transition: width 0.6s ease;
 }
-brick-progressbar[type="success"] .progress-bar {
-  background-color: #5cb85c;
-}
-brick-progressbar[type="info"] .progress-bar {
-  background-color: #5bc0de;
-}
-brick-progressbar[type="danger"] .progress-bar {
-  background-color: #d9534f;
-}
-brick-progressbar[type="warning"] .progress-bar {
-  background-color: #f0ad4e;
-}
-brick-progressbar[striped] .progress-bar {
-  background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.25, rgba(255,255,255,0.15)), color-stop(0.25, transparent), color-stop(0.5, transparent), color-stop(0.5, rgba(255,255,255,0.15)), color-stop(0.75, rgba(255,255,255,0.15)), color-stop(0.75, transparent), to(transparent));
-  background-image: -webkit-linear-gradient(45deg, rgba(255,255,255,0.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.15) 75%, transparent 75%, transparent);
-  background-image: -moz-linear-gradient(45deg, rgba(255,255,255,0.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.15) 75%, transparent 75%, transparent);
-  background-image: linear-gradient(45deg, rgba(255,255,255,0.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.15) 75%, transparent 75%, transparent);
-  background-size: 40px 40px;
-}
-brick-progressbar[active] .progress-bar {
-  -webkit-animation: progress-bar-stripes 2s linear infinite;
-  animation: progress-bar-stripes 2s linear infinite;
-}
-brick-progressbar .progress-bar span.status {
+:host::shadow .progress-bar span.status {
   display: none;
 }
-brick-progressbar[showStatus] .progress-bar span.status {
+:host::shadow .progress-bar span.status .percentage {
   display: block;
 }
-brick-progressbar span.status .percentage {
-  display: block;
-}
-brick-progressbar span.status .value {
+:host::shadow .progress-bar span.status .value {
   display: none;
-}
-brick-progressbar[showactualvalue] span.status .percentage {
-  display: none;
-}
-brick-progressbar[showactualvalue] span.status .value {
-  display: block;
 }
 @-moz-keyframes progress-bar-stripes {
   from {
