@@ -22,6 +22,10 @@
     value:0
   };
 
+  var booleanAttrs = ["active", "striped", "intermediate", "showActualValue", "showStatus"];
+  var integerAttrs = ["value", "min", "max"];
+  var progressBarTypes = ["success", "info", "warning", "danger", "default"];
+
   var BrickProgressbarElementPrototype = Object.create(HTMLElement.prototype);
 
   mix(BrickProgressbarElementPrototype, {
@@ -64,8 +68,24 @@
       }
       return val;
     },
+    getIntegerAttribute: function (attr) {
+      var val = this.getAttribute(attr);
+      if(val !== null){
+        return parseInt(val, 10);
+      }else{
+        return defaultOptions[attr];
+      }
+    },
+    setIntegerAttribute: function (attr, newVal) {
+      if(typeof newVal === "number"){
+        if (this[attr] !== newVal + "") {
+          this.setAttribute(attr, newVal);
+          this.render();
+        }
+      }
+    },
     toggle: function (attr) {
-      if(["active", "striped", "showStatus", "showActualValue"].indexOf("attr") !== -1){
+      if(booleanAttrs.indexOf(attr) !== -1){
         this.setBooleanAttribute(attr, !this.setBooleanAttribute(attr));
       }
     },
@@ -95,61 +115,33 @@
     }
   });
 
+  booleanAttrs.map(function (v,i) {
+    var Prop = {};
+    Prop[v] = {
+      get : function () {
+        return this.getBooleanAttribute(v);
+      },
+      set : function (newVal) {
+        this.setBooleanAttribute(v, newVal);
+      }
+    };
+    Object.defineProperties(BrickProgressbarElementPrototype, Prop);
+  });
+
+  integerAttrs.map(function (v,i) {
+    var Prop = {};
+    Prop[v] = {
+      get : function () {
+        return this.getIntegerAttribute(v);
+      },
+      set : function (newVal) {
+        this.setIntegerAttribute(v, newVal);
+      }
+    };
+    Object.defineProperties(BrickProgressbarElementPrototype, Prop);
+  });
+
   Object.defineProperties(BrickProgressbarElementPrototype, {
-    'value': {
-      get : function () {
-        var val = this.getAttribute('value');
-        if(val !== null){
-          return parseInt(val, 10);
-        }else{
-          return defaultOptions.value;
-        }
-      },
-      set : function (newVal) {
-        if (this.value !== newVal) {
-          if(typeof newVal === "number"){
-            this.setAttribute('value', newVal);
-            this.render();
-          }
-        }
-      }
-    },
-    'min': {
-      get : function () {
-        var val = this.getAttribute('min');
-        if(val !== null){
-          return parseInt(val, 10);
-        }else{
-          return defaultOptions.min;
-        }
-      },
-      set : function (newVal) {
-        if (this.min !== newVal) {
-          if(typeof newVal === "number"){
-            this.setAttribute('min', newVal);
-            this.render();
-          }
-        }
-      }
-    },
-    'max': {
-      get : function () {
-        var val = this.getAttribute('max');
-        if(val !== null){
-          return parseInt(val, 10);
-        }else{
-          return defaultOptions.max;
-        }
-      },
-      set : function (newVal) {
-        if (this.max !== newVal) {
-          if(typeof newVal === "number"){
-            this.setAttribute('max', newVal);
-            this.render();
-          }
-        }
-      }
-    },
     'type': {
       get : function () {
         var val = this.getAttribute('type');
@@ -161,42 +153,10 @@
       },
       set : function (newVal) {
         if (this.type !== newVal) {
-          if(newVal === "success" || newVal === "info" || newVal === "warning" || newVal === "danger" || newVal === "default"){
+          if(progressBarTypes.indexOf(newVal) !== -1){
             this.setAttribute('type', newVal);
           }
         }
-      }
-    },
-    'active': {
-      get : function () {
-        return this.getBooleanAttribute("active");
-      },
-      set : function (newVal) {
-        this.setBooleanAttribute("active", newVal);
-      }
-    },
-    'striped': {
-      get : function () {
-        return this.getBooleanAttribute("striped");
-      },
-      set : function (newVal) {
-        this.setBooleanAttribute("striped", newVal);
-      }
-    },
-    'showActualValue': {
-      get : function () {
-        return this.getBooleanAttribute("showActualValue");
-      },
-      set : function (newVal) {
-        this.setBooleanAttribute("showActualValue", newVal);
-      }
-    },
-    'showStatus': {
-      get : function () {
-        return this.getBooleanAttribute("showStatus");
-      },
-      set : function (newVal) {
-        this.setBooleanAttribute("showStatus", newVal);
       }
     }
   });
