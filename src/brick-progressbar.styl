@@ -42,7 +42,45 @@
   }
 }
 
+
+
+
+:host(brick-progressbar[intermediate])::shadow .progress {
+  border-radius: 0;
+}
+
+
+:host(brick-progressbar[intermediate])::shadow .progress-bar {
+  width:20% !important;
+  position: relative;
+  -webkit-animation : progress-intermediate-animation 1s linear infinite;
+  animation: progress-intermediate-animation 1s linear infinite;
+}
+
+
 :host::shadow{
+
+  @-webkit-keyframes progress-intermediate-animation {
+    0% {left:0}
+    50% {left:80%}
+    100% {left:0;}
+  }
+  @-moz-keyframes progress-intermediate-animation {
+    0% {left:0}
+    50% {left:80%}
+    100% {left:0;}
+  }
+  @-o-keyframes progress-intermediate-animation {
+    0% {left:0}
+    50% {left:80%}
+    100% {left:0;}
+  }
+  @keyframes progress-intermediate-animation {
+    0% {left:0}
+    50% {left:80%}
+    100% {left:0;}
+  }
+
   @-webkit-keyframes progress-bar-stripes {
     from {
       background-position: 40px 0;

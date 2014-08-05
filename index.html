@@ -10,24 +10,31 @@
 
     <!-- Importing Custom Elemenent -->
     <link rel="import" href="dist/brick-progressbar.html">
-
   </head>
   <body>
 
     <!-- Using Custom Element -->
-    <h2>Simple Progressbar</h2>
+    <h2>Simple Progressbar with Value</h2>
 
     <pre lang="js">
     &lt;brick-progressbar value="60">&lt;/brick-progressbar>
     </pre>
     <brick-progressbar value="60"></brick-progressbar>
 
+    <h2>Simple Progressbar without Value - Intermediate</h2>
+
+    <pre lang="js">
+    &lt;brick-progressbar <b>intermediate</b>>&lt;/brick-progressbar>
+    </pre>
+    <brick-progressbar intermediate></brick-progressbar>
+
+
     <h2>Progressbar with Status</h2>
 
     <pre lang="js">
-    &lt;brick-progressbar <b>showStatus</b> value="60">&lt;/brick-progressbar>
+    &lt;brick-progressbar class="inter"  <b>showStatus</b> value="20">&lt;/brick-progressbar>
     </pre>
-    <brick-progressbar showStatus value="60"></brick-progressbar>
+    <brick-progressbar showStatus value="20"></brick-progressbar>
 
     <h2>Striped</h2>
 
@@ -56,26 +63,6 @@
     <brick-progressbar showStatus value="20" striped active type="info"></brick-progressbar>
     <brick-progressbar showStatus value="20" striped active type="danger"></brick-progressbar>
     <brick-progressbar showStatus value="20" striped active type="warning"></brick-progressbar>
-
-    <h2>Change Type from Progressbar</h2>
-
-    <pre lang="js">
-        &lt;brick-progressbar showStatus value="20" striped active <b>id="p0" type="danger"</b>>&lt;/brick-progressbar>
-        &lt;button <b>onclick="document.getElementById('p0').type='default';"</b>>Default&lt;/button>
-        &lt;button <b>onclick="document.getElementById('p0').type='success';"</b>>Success&lt;/button>
-        &lt;button <b>onclick="document.getElementById('p0').type='warning';"</b>>Warning&lt;/button>
-        &lt;button <b>onclick="document.getElementById('p0').type='info';"</b>>Info&lt;/button>
-        &lt;button <b>onclick="document.getElementById('p0').type='danger';"</b>>Danger&lt;/button>
-
-
-    </pre>
-    <brick-progressbar showStatus value="20" striped active id="p0" type="danger"></brick-progressbar>
-    <button onclick="document.getElementById('p0').type='default';">Default</button>
-    <button onclick="document.getElementById('p0').type='success';">Success</button>
-    <button onclick="document.getElementById('p0').type='warning';">Warning</button>
-    <button onclick="document.getElementById('p0').type='info';">Info</button>
-    <button onclick="document.getElementById('p0').type='danger';">Danger</button>
-
 
     <h2>Set Progress from JavaScript</h2>
 
@@ -111,7 +98,7 @@
     <button onclick="document.getElementById('p3').value=800;"><b>Click to Set 800</b></button>
 
 
-    <h2>Toggle various boolean options</h2>
+    <h2>Play with various boolean options</h2>
 
 
     <pre lang="js">
@@ -120,14 +107,26 @@
     &lt;button onclick="document.getElementById('p4').striped=!document.getElementById('p4').striped;"><b>Toggle - striped</b>&lt;/button>
     &lt;button onclick="document.getElementById('p4').active=!document.getElementById('p4').active;"><b>Toggle - active</b>&lt;/button>
     &lt;button onclick="document.getElementById('p4').showActualValue=!document.getElementById('p4').showActualValue;"><b>Toggle - showActualValue</b>&lt;/button>
+    &lt;button onclick="document.getElementById('p4').intermediate=!document.getElementById('p4').intermediate;"><b>Toggle - intermediate</b>&lt;/button>
+    &lt;button <b>onclick="document.getElementById('p4').type='default';"</b>>Default&lt;/button>
+    &lt;button <b>onclick="document.getElementById('p4').type='success';"</b>>Success&lt;/button>
+    &lt;button <b>onclick="document.getElementById('p4').type='warning';"</b>>Warning&lt;/button>
+    &lt;button <b>onclick="document.getElementById('p4').type='info';"</b>>Info&lt;/button>
+    &lt;button <b>onclick="document.getElementById('p4').type='danger';"</b>>Danger&lt;/button>
 
     </pre>
 
     <brick-progressbar showStatus min="100" max="900" id="p4" value="300" striped active></brick-progressbar>
-    <button onclick="document.getElementById('p4').showStatus=!document.getElementById('p4').showStatus;"><b>Toggle - showStatus</b></button>
-    <button onclick="document.getElementById('p4').striped=!document.getElementById('p4').striped;"><b>Toggle - striped</b></button>
-    <button onclick="document.getElementById('p4').active=!document.getElementById('p4').active;"><b>Toggle - active</b></button>
-    <button onclick="document.getElementById('p4').showActualValue=!document.getElementById('p4').showActualValue;"><b>Toggle - showActualValue</b></button>
+    <button onclick="document.getElementById('p4').showStatus=!document.getElementById('p4').showStatus;">Toggle - showStatus</button>
+    <button onclick="document.getElementById('p4').striped=!document.getElementById('p4').striped;">Toggle - striped</button>
+    <button onclick="document.getElementById('p4').active=!document.getElementById('p4').active;">Toggle - active</button>
+    <button onclick="document.getElementById('p4').showActualValue=!document.getElementById('p4').showActualValue;">Toggle - showActualValue</button>
+    <button onclick="document.getElementById('p4').intermediate=!document.getElementById('p4').intermediate;">Toggle - intermediate</button>
+    <button onclick="document.getElementById('p4').type='default';">Default</button>
+    <button onclick="document.getElementById('p4').type='success';">Success</button>
+    <button onclick="document.getElementById('p4').type='warning';">Warning</button>
+    <button onclick="document.getElementById('p4').type='info';">Info</button>
+    <button onclick="document.getElementById('p4').type='danger';">Danger</button>
 
   </body>
 </html>

@@ -48,6 +48,7 @@ Attribute         | Options    | Default     | Description
 `active`          | *boolean*  | `false`     | Show animation on striped. Not available in IE8.
 `showStatus`      | *boolean*  | `false`     | Show Status like 32% or 350/500
 `showActualValue` | *boolean*  | `false`     | Show Status in Percentage 32% if present, else show status in text like 350/500
+`intermediate`    | *boolean*  | `false`     | Show Intermediate Progress bar
 
 
 
