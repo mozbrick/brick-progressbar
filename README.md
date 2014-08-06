@@ -50,32 +50,6 @@ Attribute         | Options    | Default     | Description
 `showActualValue` | *boolean*  | `false`     | Show Status in Percentage 32% if present, else show status in text like 350/500
 `intermediate`    | *boolean*  | `false`     | Show Intermediate Progress bar
 
-
-
-TODO
-
-
-Attribute         | Options    | Default     | Description
----               | ---        | ---         | ---
-`barColor`        | *string*   | `blue`      | Progressbar color
-`backgroundColor` | *string*   | `grey`      | Progressbar background color
-
-## Methods
-
-TODO 
-
-Method       | Parameters   | Returns     | Description
----          | ---          | ---         | ---
-`toggle()`   | None.        | Nothing.    | Toggle any boolean attr
-
-## Events
-
-TODO 
-
-Event         | Description
----           | ---
-`complete`    | Triggers when the Progressbar reaches to 100% or its full value
-
 ## Development
 
 Brick components use [Stylus](http://learnboost.github.com/stylus/) to generate their CSS.
