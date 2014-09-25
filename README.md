@@ -1,11 +1,6 @@
 brick-progressbar
 =================
 
-Currently Work in progress
---
-Aiming for creating custom Web Component for Progress bar. inspired by MozBrick and BootStrap !
-
-
 # brick-progressbar
 
 > A [Brick](https://github.com/mozilla/brick/) custom element.
@@ -13,7 +8,7 @@ Aiming for creating custom Web Component for Progress bar. inspired by MozBrick 
 
 ## Demo
 
-[Check it live!](http://nsisodiya.github.io/brick-progressbar)
+[Check it live!](http://mozbrick.github.io/brick-progressbar)
 
 ## Usage
 
